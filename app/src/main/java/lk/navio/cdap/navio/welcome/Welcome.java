@@ -1,17 +1,67 @@
 package lk.navio.cdap.navio.welcome;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class Welcome extends ActionBarActivity {
+
+    ListView menuLv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        menuLv = (ListView) findViewById(R.id.menuLv);
+
+        String[] listValues = new String[]{"Augmented Reality Camera", "Nearby Location List",
+                "Navio Translator"};
+
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < listValues.length; ++i) {
+            list.add(listValues[i]);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+
+        menuLv.setAdapter(adapter);
+
+        menuLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // TODO Auto-generated method stub
+                switch (position) {
+
+                    case 0:
+                        Intent arCam = new Intent(getApplicationContext(), ARCameraActivity.class);
+                        startActivity(arCam);
+                        break;
+
+                    case 1:
+                        Intent LocList = new Intent(getApplicationContext(), LocationListActivity.class);
+                        startActivity(LocList);
+                        break;
+
+                    default:
+                        Intent translator = new Intent(getApplicationContext(), TranslatorActivity.class);
+                        startActivity(translator);
+
+                }
+
+            }
+        });
+
     }
 
 
