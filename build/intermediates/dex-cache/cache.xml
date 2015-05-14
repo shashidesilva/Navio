@@ -16,6 +16,13 @@
         <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-6f897e458e1ea2cc3e9dba7dd572fb7fb00a9db5.jar" />
     </item>
     <item
+        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-c07b06a9407538f628d51c363a7e024cec197cde.jar" />
+    </item>
+    <item
         jar="C:\Users\Tharaka\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -23,11 +30,11 @@
         <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-afa46fa3a8fe56b6dd8b1c8d09544a08c1f045f2.jar" />
     </item>
     <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
+        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\libs\wikitudesdk.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-c07b06a9407538f628d51c363a7e024cec197cde.jar" />
+        sha1="7c5e5c9b24600f61ff5348ab0a7310e5d84138c7">
+        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\wikitudesdk-4b0b5c049975939872a2f591d175db7a1e22a175.jar" />
     </item>
 
 </items>

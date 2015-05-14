@@ -7,5 +7,9 @@
     tools:context="lk.navio.cdap.navio.welcome.ARCameraActivity">
 
 
+    <com.wikitude.architect.ArchitectView android:id="@+id/architectView"
+        android:layout_width="fill_parent" android:layout_height="fill_parent"/>
+
+
 
 </RelativeLayout>
