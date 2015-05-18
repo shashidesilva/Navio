@@ -46,7 +46,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ARCameraActivity"
+            android:name=".ARCameraView.ARCameraActivity"
             android:label="@string/title_activity_arcamera"
             android:configChanges="screenSize|orientation">
         </activity>

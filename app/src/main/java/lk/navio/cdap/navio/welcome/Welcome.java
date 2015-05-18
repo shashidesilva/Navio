@@ -12,6 +12,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import lk.navio.cdap.navio.welcome.ARCameraView.ARCameraActivity;
+
 
 public class Welcome extends ActionBarActivity {
 
