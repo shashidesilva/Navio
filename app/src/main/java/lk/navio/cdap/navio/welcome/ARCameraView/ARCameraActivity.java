@@ -2,6 +2,7 @@ package lk.navio.cdap.navio.welcome.ARCameraView;
 
 import android.location.Location;
 import android.location.LocationListener;
+import android.opengl.GLES20;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,8 +13,10 @@ import com.wikitude.architect.ArchitectView;
 import com.wikitude.architect.StartupConfiguration;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import lk.navio.cdap.navio.welcome.R;
 
@@ -21,7 +24,6 @@ import lk.navio.cdap.navio.welcome.R;
 public abstract class ARCameraActivity extends ActionBarActivity implements ArchitectViewHolderInterface {
 
     protected ArchitectView architectView;
-    protected static final String SDK_KEY = "uPuJ6WGapvnis4F0vzcuKREuED2USrwYSz1zw4HkboOZWd1xBwVk47eBVZ8r1CUAVCl+7sB1dfEi9Goms6mIOQqqSPIQI2oVwDqxbI358bf5Lgn/ABiYvZ8wp62PquYeJVyvSrL/GMjBNn3ynss7zwy6VjcbYIhRzwdoVgiEKWVTYWx0ZWRfX2dEDoXe49j6GM8lJgiJzejQ3CpS5J8HcxhQjeQfBAxmrWnQRPeMgkxUV0xZjiH/69mzavd2ViilubDtwvtcRNRiWEelNwrkSHADiS73HeW5jBMEzUq1teHM04AVKygr5n46qlgkOrOGvQvT0fRAXzeI276CZtF0UDnFRs48aBYNeHcs4CCkcaMF63E77kTr0TZk8j6o2MdWdaLotiOYkXH7IE3mPVbKdXcm8Uypzol43gV9zvHUuwCv60ZCxzhLaS3vBIWPnREYUt21bMVXfHG/9wz1rIPZxrnx6y+cwRVoowqE2gOC8ePuXS7098fQDDKGglvyeN59jVWjKnqOIfO7znY9whcr76a1D6vOrRtS3aQGRfnTdTRqbGhuOiqjiQPli9ZSiWMHREFyaDn8dI0A1cPFEPFKtmhli3SHaMhQl6B4bChxey/1KABLHLagK6Nj7bTMk4F+45K2uk8GJuLvfLHhnNMSMRVbnAS/5wdSXHLsQa8lwck=";
 
     protected ArchitectView.SensorAccuracyChangeListener sensorAccuracyListener;
 
@@ -40,11 +42,11 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_arcamera);
+        setContentView(this.getContentViewId());
 
-        this.architectView = (ArchitectView) findViewById(R.id.architectView);
+        this.architectView = (ArchitectView) findViewById(this.getArchitectViewId());
 
-        final StartupConfiguration config = new StartupConfiguration(SDK_KEY);
+        final StartupConfiguration config = new StartupConfiguration(this.getWikitudeSDKLicenseKey(), this.getFeatures(), this.getCameraPosition());
 
         try {
             this.architectView.onCreate(config);
@@ -127,7 +129,7 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
             try {
                 // load content via url in architectView, ensure '<script src="architect://architect.js"></script>' is part of this HTML file, have a look at wikitude.com's developer section for API references
-                this.architectView.load("ARWorld.html");
+                this.architectView.load(this.getARchitectWorldPath());
 
                 if (this.getInitialCullingDistanceMeters() != ArchitectViewHolderInterface.CULLING_DISTANCE_DEFAULT_METERS) {
                     // set the culling distance - meaning: the maximum distance to render geo-content
@@ -208,44 +210,150 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
 
     @Override
-    public String getARchitectWorldPath() {
-        return null;
-    }
+    public abstract String getARchitectWorldPath();
 
     @Override
-    public ArchitectView.ArchitectUrlListener getUrlListener() {
-        return null;
-    }
+    public abstract ArchitectView.ArchitectUrlListener getUrlListener();
+    @Override
+    public abstract int getContentViewId();
 
     @Override
-    public int getContentViewId() {
-        return 0;
-    }
+    public abstract String getWikitudeSDKLicenseKey();
 
     @Override
-    public String getWikitudeSDKLicenseKey() {
-        return null;
-    }
+    public abstract int getArchitectViewId();
 
     @Override
-    public int getArchitectViewId() {
-        return 0;
-    }
+    public abstract ILocationProvider getLocationProvider(final LocationListener locationListener);
 
     @Override
-    public ILocationProvider getLocationProvider(LocationListener locationListener) {
-        return null;
-    }
+    public abstract ArchitectView.SensorAccuracyChangeListener getSensorAccuracyListener();
 
     @Override
-    public ArchitectView.SensorAccuracyChangeListener getSensorAccuracyListener() {
-        return null;
+    public abstract float getInitialCullingDistanceMeters();
+
+
+
+    /**
+     * helper to check if video-drawables are supported by this device. recommended to check before launching ARchitect Worlds with videodrawables
+     * @return true if AR.VideoDrawables are supported, false if fallback rendering would apply (= show video fullscreen)
+     */
+    public static final boolean isVideoDrawablesSupported() {
+        String extensions = GLES20.glGetString(GLES20.GL_EXTENSIONS);
+        return extensions != null && extensions.contains( "GL_OES_EGL_image_external" ) && android.os.Build.VERSION.SDK_INT >= 14 ;
     }
 
-    @Override
-    public float getInitialCullingDistanceMeters() {
-        return 0;
+    protected void injectData() {
+        if (!isLoading) {
+            final Thread t = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    isLoading = true;
+
+                    final int WAIT_FOR_LOCATION_STEP_MS = 2000;
+
+                    while (lastKnownLocation==null && !isFinishing()) {
+
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Toast.makeText(ARCameraActivity.this, "Fetching the location", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        try {
+                            Thread.sleep(WAIT_FOR_LOCATION_STEP_MS);
+                        } catch (InterruptedException e) {
+                            break;
+                        }
+                    }
+
+                    if (lastKnownLocation!=null && !isFinishing()) {
+                        // TODO: you may replace this dummy implementation and instead load POI information e.g. from your database
+                        poiData = getPoiInformation(lastKnownLocation, 20);
+                        callJavaScript("World.loadPoisFromJsonData", new String[] { poiData.toString() });
+                    }
+
+                    isLoading = false;
+                }
+            });
+            t.start();
+        }
     }
+
+    /**
+     * call JacaScript in architectView
+     * @param methodName
+     * @param arguments
+     */
+    private void callJavaScript(final String methodName, final String[] arguments) {
+        final StringBuilder argumentsString = new StringBuilder("");
+        for (int i= 0; i<arguments.length; i++) {
+            argumentsString.append(arguments[i]);
+            if (i<arguments.length-1) {
+                argumentsString.append(", ");
+            }
+        }
+
+        if (this.architectView!=null) {
+            final String js = ( methodName + "( " + argumentsString.toString() + " );" );
+            this.architectView.callJavascript(js);
+        }
+    }
+
+    /**
+     * loads poiInformation and returns them as JSONArray. Ensure attributeNames of JSON POIs are well known in JavaScript, so you can parse them easily
+     * @param userLocation the location of the user
+     * @param numberOfPlaces number of places to load (at max)
+     * @return POI information in JSONArray
+     */
+    public static JSONArray getPoiInformation(final Location userLocation, final int numberOfPlaces) {
+
+        if (userLocation==null) {
+            return null;
+        }
+
+        final JSONArray pois = new JSONArray();
+
+        // ensure these attributes are also used in JavaScript when extracting POI data
+        final String ATTR_ID = "id";
+        final String ATTR_NAME = "name";
+        final String ATTR_DESCRIPTION = "description";
+        final String ATTR_LATITUDE = "latitude";
+        final String ATTR_LONGITUDE = "longitude";
+        final String ATTR_ALTITUDE = "altitude";
+
+        for (int i=1;i <= numberOfPlaces; i++) {
+            final HashMap<String, String> poiInformation = new HashMap<String, String>();
+            poiInformation.put(ATTR_ID, String.valueOf(i));
+            poiInformation.put(ATTR_NAME, "POI#" + i);
+            poiInformation.put(ATTR_DESCRIPTION, "This is the description of POI#" + i);
+            double[] poiLocationLatLon = getRandomLatLonNearby(userLocation.getLatitude(), userLocation.getLongitude());
+            poiInformation.put(ATTR_LATITUDE, String.valueOf(poiLocationLatLon[0]));
+            poiInformation.put(ATTR_LONGITUDE, String.valueOf(poiLocationLatLon[1]));
+            final float UNKNOWN_ALTITUDE = -32768f;  // equals "AR.CONST.UNKNOWN_ALTITUDE" in JavaScript (compare AR.GeoLocation specification)
+            // Use "AR.CONST.UNKNOWN_ALTITUDE" to tell ARchitect that altitude of places should be on user level. Be aware to handle altitude properly in locationManager in case you use valid POI altitude value (e.g. pass altitude only if GPS accuracy is <7m).
+            poiInformation.put(ATTR_ALTITUDE, String.valueOf(UNKNOWN_ALTITUDE));
+            pois.put(new JSONObject(poiInformation));
+        }
+
+        return pois;
+    }
+
+    /**
+     * helper for creation of dummy places.
+     * @param lat center latitude
+     * @param lon center longitude
+     * @return lat/lon values in given position's vicinity
+     */
+    private static double[] getRandomLatLonNearby(final double lat, final double lon) {
+        return new double[] { lat + Math.random()/5-0.1 , lon + Math.random()/5-0.1};
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -268,6 +376,7 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
         return super.onOptionsItemSelected(item);
     }
+
 
 
 

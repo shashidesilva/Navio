@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="lk.navio.cdap.navio.welcome">
+    package="lk.navio.cdap.navio.welcome"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -46,8 +47,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ARCameraView.ARCameraActivity"
-            android:label="@string/title_activity_arcamera"
+            android:name=".ARCameraView.CameraActivity"
+            android:label="CameraActivity"
             android:configChanges="screenSize|orientation">
         </activity>
         <activity

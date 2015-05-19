@@ -8,7 +8,9 @@
 
 
     <com.wikitude.architect.ArchitectView android:id="@+id/architectView"
-        android:layout_width="fill_parent" android:layout_height="fill_parent"/>
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
 
 

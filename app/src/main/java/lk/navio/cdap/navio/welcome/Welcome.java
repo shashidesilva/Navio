@@ -13,11 +13,21 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import lk.navio.cdap.navio.welcome.ARCameraView.ARCameraActivity;
+import lk.navio.cdap.navio.welcome.ARCameraView.CameraActivity;
 
 
 public class Welcome extends ActionBarActivity {
 
+    public static final String EXTRAS_KEY_ACTIVITY_IR = "activityIr";
+    public static final String EXTRAS_KEY_ACTIVITY_GEO = "activityGeo";
+
+    public static final String EXTRAS_KEY_ACTIVITIES_IR_ARRAY = "activitiesIr";
+    public static final String EXTRAS_KEY_ACTIVITIES_GEO_ARRAY = "activitiesGeo";
+
     ListView menuLv;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +56,11 @@ public class Welcome extends ActionBarActivity {
                 switch (position) {
 
                     case 0:
-                        Intent arCam = new Intent(getApplicationContext(), ARCameraActivity.class);
+                        Intent arCam = new Intent(getApplicationContext(), CameraActivity.class);
+                        arCam.putExtra(EXTRAS_KEY_ACTIVITY_IR,
+                                this.getActivitiesIr()[position]);
+                        arCam.putExtra(EXTRAS_KEY_ACTIVITY_GEO,
+                                this.getActivitiesGeo()[position]);
                         startActivity(arCam);
                         break;
 
@@ -62,9 +76,21 @@ public class Welcome extends ActionBarActivity {
                 }
 
             }
+
+            protected boolean[] getActivitiesIr() {
+                return getIntent().getExtras().getBooleanArray(
+                        EXTRAS_KEY_ACTIVITIES_IR_ARRAY);
+            }
+
+            protected boolean[] getActivitiesGeo() {
+                return getIntent().getExtras().getBooleanArray(
+                        EXTRAS_KEY_ACTIVITIES_GEO_ARRAY);
+            }
         });
 
     }
+
+
 
 
     @Override
