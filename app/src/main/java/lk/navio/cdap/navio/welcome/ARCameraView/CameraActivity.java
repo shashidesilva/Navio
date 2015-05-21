@@ -1,6 +1,8 @@
 package lk.navio.cdap.navio.welcome.ARCameraView;
 
+import android.hardware.SensorManager;
 import android.location.LocationListener;
+import android.widget.Toast;
 
 import com.wikitude.architect.ArchitectView;
 import com.wikitude.architect.StartupConfiguration;
@@ -8,9 +10,7 @@ import com.wikitude.architect.StartupConfiguration;
 import lk.navio.cdap.navio.welcome.R;
 import lk.navio.cdap.navio.welcome.Welcome;
 
-/**
- * Created by Tharaka on 5/19/2015.
- */
+
 public class CameraActivity extends ARCameraActivity {
 
     private long lastCalibrationToastShownTimeMillis = System.currentTimeMillis();
@@ -65,8 +65,16 @@ public class CameraActivity extends ARCameraActivity {
 
     @Override
     public ArchitectView.SensorAccuracyChangeListener getSensorAccuracyListener() {
-        return null;
-        //have to implement
+        return new ArchitectView.SensorAccuracyChangeListener() {
+            @Override
+            public void onCompassAccuracyChanged( int accuracy ) {
+				/* UNRELIABLE = 0, LOW = 1, MEDIUM = 2, HIGH = 3 */
+                if ( accuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM && CameraActivity.this != null && !CameraActivity.this.isFinishing() && System.currentTimeMillis() - CameraActivity.this.lastCalibrationToastShownTimeMillis > 5 * 1000) {
+                    Toast.makeText(CameraActivity.this, "compass accuracy is low", Toast.LENGTH_LONG).show();
+                    CameraActivity.this.lastCalibrationToastShownTimeMillis = System.currentTimeMillis();
+                }
+            }
+        };
     }
 
     @Override
