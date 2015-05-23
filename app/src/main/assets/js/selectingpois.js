@@ -1,7 +1,7 @@
 // implementation of AR-Experience (aka "World")
 var World = {
 	// you may request new data from server periodically, however: in this sample data is only requested once
-	isRequestingData: false,
+	//isRequestingData: false,
 
 	// true once data was fetched
 	initiallyLoadedData: false,
@@ -71,14 +71,17 @@ var World = {
 
 		/*
 			The custom function World.onLocationChanged checks with the flag World.initiallyLoadedData if the function was already called. With the first call of World.onLocationChanged an object that contains geo information will be created which will be later used to create a marker using the World.loadPoisFromJsonData function.
-		*/
+		
 		if (!World.initiallyLoadedData) {
 			/* 
 				requestDataFromLocal with the geo information as parameters (latitude, longitude) creates different poi data to a random location in the user's vicinity.
-			*/
+			
+			
+			
 			World.requestDataFromLocal(lat, lon);
 			World.initiallyLoadedData = true;
 		}
+		*/
 	},
 
 	// fired when user pressed maker in cam
@@ -120,7 +123,9 @@ var World = {
 				"name": ("POI#" + (i + 1))
 			});
 		}
+		
 		World.loadPoisFromJsonData(poiData);
+		
 	}
 
 };

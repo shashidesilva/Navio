@@ -22,14 +22,16 @@ public class CameraActivity extends ARCameraActivity {
 
     @Override
     protected boolean hasGeo() {
-        return getIntent().getExtras().getBoolean(
-                Welcome.EXTRAS_KEY_ACTIVITY_GEO);
+        //return getIntent().getExtras().getBoolean(
+                //
+        return true;
     }
 
     @Override
     protected boolean hasIR() {
-        return getIntent().getExtras().getBoolean(
-                Welcome.EXTRAS_KEY_ACTIVITY_IR);
+        //return getIntent().getExtras().getBoolean(
+                //Welcome.EXTRAS_KEY_ACTIVITY_IR);
+        return true;
     }
 
     @Override

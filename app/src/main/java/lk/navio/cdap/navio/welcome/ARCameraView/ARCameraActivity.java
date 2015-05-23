@@ -39,6 +39,9 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
     protected boolean isLoading = false;
 
+    PlacesDataJson pdj = new PlacesDataJson();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +60,11 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
         this.sensorAccuracyListener = this.getSensorAccuracyListener();
 
-        this.urlListener = this.getUrlListener();
+        //this.urlListener = this.getUrlListener();
 
-        if (this.urlListener != null && this.architectView != null) {
+        /*if (this.urlListener != null && this.architectView != null) {
             this.architectView.registerUrlListener(this.getUrlListener());
-        }
+        }*/
 
 
         if (hasGeo()) {
@@ -139,6 +142,8 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
+
+
         }
     }
 
@@ -187,7 +192,7 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
     @Override
     protected void onStop() {
         super.onStop();
-        System.exit(0);
+        //System.exit(0);
     }
 
     @Override
@@ -244,6 +249,8 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
     }
 
     protected void injectData() {
+
+
         if (!isLoading) {
             final Thread t = new Thread(new Runnable() {
 
@@ -273,7 +280,8 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
                     if (lastKnownLocation!=null && !isFinishing()) {
                         // TODO: you may replace this dummy implementation and instead load POI information e.g. from your database
-                        poiData = getPoiInformation(lastKnownLocation, 20);
+                        //poiData = getPoiInformation(lastKnownLocation, 20);
+                        poiData = pdj.getJsonPOIData();
                         callJavaScript("World.loadPoisFromJsonData", new String[] { poiData.toString() });
                     }
 
