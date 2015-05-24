@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-8c72c77278e4f865abb8c68223aa7e7c4a24e95e.jar" />
-    </item>
-    <item
         jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.3.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
         <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-ddc14746437986cbf7deee959230599518968cf7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-8c72c77278e4f865abb8c68223aa7e7c4a24e95e.jar" />
     </item>
     <item
         jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.3.0\classes.jar"
