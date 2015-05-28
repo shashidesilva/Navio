@@ -53,7 +53,7 @@ public class Welcome extends ActionBarActivity {
                 switch (position) {
 
                     case 0:
-                        Intent arCam = new Intent(getApplicationContext(), NativePOICamera.class);
+                        Intent arCam = new Intent(getApplicationContext(), CameraActivity.class);
                         startActivity(arCam);
                         break;
 

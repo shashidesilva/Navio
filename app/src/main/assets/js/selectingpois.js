@@ -1,3 +1,13 @@
+
+var ServerInformation = {
+	POIDATA_SERVER: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?",
+	//POIDATA_SERVER_ARG_LAT: "lat",
+	//POIDATA_SERVER_ARG_LON: "lon",
+	
+	POIDATA_SERVER_ARG_NR_POIS: "nrPois"
+};
+
+
 // implementation of AR-Experience (aka "World")
 var World = {
 	// you may request new data from server periodically, however: in this sample data is only requested once
@@ -82,6 +92,11 @@ var World = {
 			World.initiallyLoadedData = true;
 		}
 		*/
+		
+		if (!World.initiallyLoadedData) {
+			World.requestDataFromServer(lat, lon);
+			World.initiallyLoadedData = true;
+		}
 	},
 
 	// fired when user pressed maker in cam
@@ -126,6 +141,29 @@ var World = {
 		
 		World.loadPoisFromJsonData(poiData);
 		
+	}
+	
+	requestDataFromServer: function requestDataFromServerFn(lat, lon) {
+
+		// set helper var to avoid requesting places while loading
+		World.isRequestingData = true;
+		World.updateStatusMessage('Requesting places from web-service');
+
+		// server-url to JSON content provider
+		//var serverUrl = ServerInformation.POIDATA_SERVER + "?" + ServerInformation.POIDATA_SERVER_ARG_LAT + "=" + lat + "&" + ServerInformation.POIDATA_SERVER_ARG_LON + "=" + lon + "&" + ServerInformation.POIDATA_SERVER_ARG_NR_POIS + "=20";
+	
+		var serverUrl = ServerInformation.POIDATA_SERVER + "location="lat + "," + lon + "&radius=500&key=AIzaSyA9tHiRmGqk9mys87fIo_zfxnI9tDUXK-k";
+			
+		var jqxhr = $.getJSON(serverUrl, function(data) {
+				World.loadPoisFromJsonData(data);
+			})
+			.error(function(err) {
+				World.updateStatusMessage("Invalid web-service response.", true);
+				World.isRequestingData = false;
+			})
+			.complete(function() {
+				World.isRequestingData = false;
+			});
 	}
 
 };
