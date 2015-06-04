@@ -12,7 +12,7 @@ public class NativePOICamera extends CameraActivity {
     @Override
     protected void onPostCreate(final Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        this.injectData();
+        //this.injectData();
     }
 
 

@@ -1,17 +1,17 @@
 
 var ServerInformation = {
-	POIDATA_SERVER: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?",
+	POIDATA_SERVER: "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
 	//POIDATA_SERVER_ARG_LAT: "lat",
 	//POIDATA_SERVER_ARG_LON: "lon",
 	
-	POIDATA_SERVER_ARG_NR_POIS: "nrPois"
+	//POIDATA_SERVER_ARG_NR_POIS: "nrPois"
 };
 
 
 // implementation of AR-Experience (aka "World")
 var World = {
 	// you may request new data from server periodically, however: in this sample data is only requested once
-	//isRequestingData: false,
+	isRequestingData: false,
 
 	// true once data was fetched
 	initiallyLoadedData: false,
@@ -122,7 +122,8 @@ var World = {
 		}
 	},
 
-	// request POI data
+	// request POI data (these are dummy info for creating annotations)
+	/*
 	requestDataFromLocal: function requestDataFromLocalFn(centerPointLatitude, centerPointLongitude) {
 		var poisToCreate = 20;
 		var poiData = [];
@@ -141,7 +142,7 @@ var World = {
 		
 		World.loadPoisFromJsonData(poiData);
 		
-	}
+	}*/
 	
 	requestDataFromServer: function requestDataFromServerFn(lat, lon) {
 
@@ -152,10 +153,27 @@ var World = {
 		// server-url to JSON content provider
 		//var serverUrl = ServerInformation.POIDATA_SERVER + "?" + ServerInformation.POIDATA_SERVER_ARG_LAT + "=" + lat + "&" + ServerInformation.POIDATA_SERVER_ARG_LON + "=" + lon + "&" + ServerInformation.POIDATA_SERVER_ARG_NR_POIS + "=20";
 	
-		var serverUrl = ServerInformation.POIDATA_SERVER + "location="lat + "," + lon + "&radius=500&key=AIzaSyA9tHiRmGqk9mys87fIo_zfxnI9tDUXK-k";
+		var serverUrl = ServerInformation.POIDATA_SERVER + "?" +"location="+lat + "," + lon + "&radius=500&key=AIzaSyA9tHiRmGqk9mys87fIo_zfxnI9tDUXK-k";
+			
+		var poiData = [];
 			
 		var jqxhr = $.getJSON(serverUrl, function(data) {
-				World.loadPoisFromJsonData(data);
+				
+				for(var i in data.results){
+					
+					poiData.push({
+					"id": (data.results[i].id),
+					"longitude": (data.results[i].geometry.location.lng),
+					"latitude": (data.results[i].geometry.location.lat),
+					"description": (data.results[i].types[0]),
+					// use this value to ignore altitude information in general - marker will always be on user-level
+					"altitude": AR.CONST.UNKNOWN_ALTITUDE,
+					"name": (data.results[i].name)
+					});
+				
+				}
+
+				World.loadPoisFromJsonData(poiData);
 			})
 			.error(function(err) {
 				World.updateStatusMessage("Invalid web-service response.", true);
