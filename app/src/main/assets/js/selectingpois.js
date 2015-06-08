@@ -27,8 +27,18 @@ var World = {
 	// The last selected marker
 	currentMarker: null,
 
+	locationUpdateCounter: 0,
+	updatePlacemarkDistancesEveryXLocationUpdates: 10,
+
 	// called to inject new POI data
 	loadPoisFromJsonData: function loadPoisFromJsonDataFn(poiData) {
+	
+	
+		// show radar & set click-listener
+		PoiRadar.show();
+		$('#radarContainer').unbind('click');
+		$("#radarContainer").click(PoiRadar.clickedRadar);
+	
 		// empty list of visible markers
 		World.markerList = [];
 
@@ -57,8 +67,18 @@ var World = {
 			*/
 			World.markerList.push(new Marker(singlePoi));
 		}
+		
+		// updates distance information of all placemarks
+		World.updateDistanceToUserValues();
 
 		World.updateStatusMessage(currentPlaceNr + ' places loaded');
+	},
+
+	// sets/updates distances of all makers so they are available way faster than calling (time-consuming) distanceToUser() method all the time
+	updateDistanceToUserValues: function updateDistanceToUserValuesFn() {
+		for (var i = 0; i < World.markerList.length; i++) {
+			World.markerList[i].distanceToUser = World.markerList[i].markerObject.locations[0].distanceToUser();
+		}
 	},
 
 	// updates status message shon in small "i"-button aligned bottom center
@@ -96,14 +116,21 @@ var World = {
 		if (!World.initiallyLoadedData) {
 			World.requestDataFromServer(lat, lon);
 			World.initiallyLoadedData = true;
+		} else if (World.locationUpdateCounter === 0) {
+			// update placemark distance information frequently, you max also update distances only every 10m with some more effort
+			World.updateDistanceToUserValues();
 		}
+		
+		// helper used to update placemark information every now and then (e.g. every 10 location upadtes fired)
+		World.locationUpdateCounter = (++World.locationUpdateCounter % World.updatePlacemarkDistancesEveryXLocationUpdates);
+		
 	},
 
 	// fired when user pressed maker in cam
 	onMarkerSelected: function onMarkerSelectedFn(marker) {
 
 		// deselect previous marker
-		if (World.currentMarker) {
+		/*if (World.currentMarker) {
 			if (World.currentMarker.poiData.id == marker.poiData.id) {
 				return;
 			}
@@ -113,13 +140,40 @@ var World = {
 		// highlight current one
 		marker.setSelected(marker);
 		World.currentMarker = marker;
+		*/
+		
+		World.currentMarker = marker;
+
+		/*
+			In this sample a POI detail panel appears when pressing a cam-marker (the blue box with title & description), 
+			compare index.html in the sample's directory.
+		*/
+		// update panel values
+		$("#poi-detail-title").html(marker.poiData.title);
+		$("#poi-detail-description").html(marker.poiData.description);
+
+		// distance and altitude are measured in meters by the SDK. You may convert them to miles / feet if required.
+		var distanceToUserValue = (marker.distanceToUser > 999) ? ((marker.distanceToUser / 1000).toFixed(2) + " km") : (Math.round(marker.distanceToUser) + " m");
+
+		$("#poi-detail-distance").html(distanceToUserValue);
+
+		// show panel
+		$("#panel-poidetail").panel("open", 123);
+
+		$(".ui-panel-dismiss").unbind("mousedown");
+
+		// deselect AR-marker when user exits detail screen div.
+		$("#panel-poidetail").on("panelbeforeclose", function(event, ui) {
+			World.currentMarker.setDeselected(World.currentMarker);
+		});
 	},
 
 	// screen was clicked but no geo-object was hit
 	onScreenClick: function onScreenClickFn() {
-		if (World.currentMarker) {
+		/*if (World.currentMarker) {
 			World.currentMarker.setDeselected(World.currentMarker);
-		}
+		}*/
+		
 	},
 
 	// request POI data (these are dummy info for creating annotations)
@@ -143,6 +197,18 @@ var World = {
 		World.loadPoisFromJsonData(poiData);
 		
 	}*/
+	
+	getMaxDistance: function getMaxDistanceFn() {
+
+		// sort palces by distance so the first entry is the one with the maximum distance
+		World.markerList.sort(World.sortByDistanceSortingDescending);
+
+		// use distanceToUser to get max-distance
+		var maxDistanceMeters = World.markerList[0].distanceToUser;
+
+		// return maximum distance times some factor >1.0 so ther is some room left and small movements of user don't cause places far away to disappear.
+		return maxDistanceMeters * 1.1;
+	},
 	
 	requestDataFromServer: function requestDataFromServerFn(lat, lon) {
 
@@ -182,6 +248,16 @@ var World = {
 			.complete(function() {
 				World.isRequestingData = false;
 			});
+	},
+	
+	// helper to sort places by distance
+	sortByDistanceSorting: function(a, b) {
+		return a.distanceToUser - b.distanceToUser;
+	},
+
+	// helper to sort places by distance, descending
+	sortByDistanceSortingDescending: function(a, b) {
+		return b.distanceToUser - a.distanceToUser;
 	}
 
 };
