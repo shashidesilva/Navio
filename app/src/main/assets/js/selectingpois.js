@@ -13,6 +13,9 @@ var World = {
 	// you may request new data from server periodically, however: in this sample data is only requested once
 	isRequestingData: false,
 
+	markerLat: null,
+	markerLong: null,
+
 	// true once data was fetched
 	initiallyLoadedData: false,
 
@@ -151,6 +154,9 @@ var World = {
 		// update panel values
 		$("#poi-detail-title").html(marker.poiData.title);
 		$("#poi-detail-description").html(marker.poiData.description);
+
+		World.markerLat = marker.poiData.latitude;
+		World.markerLong = marker.poiData.longitude;
 
 		// distance and altitude are measured in meters by the SDK. You may convert them to miles / feet if required.
 		var distanceToUserValue = (marker.distanceToUser > 999) ? ((marker.distanceToUser / 1000).toFixed(2) + " km") : (Math.round(marker.distanceToUser) + " m");
