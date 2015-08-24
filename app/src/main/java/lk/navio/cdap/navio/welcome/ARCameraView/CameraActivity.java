@@ -1,7 +1,9 @@
 package lk.navio.cdap.navio.welcome.ARCameraView;
 
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.location.LocationListener;
+import android.net.Uri;
 import android.widget.Toast;
 
 import com.wikitude.architect.ArchitectView;
@@ -41,8 +43,25 @@ public class CameraActivity extends ARCameraActivity {
 
     @Override
     public ArchitectView.ArchitectUrlListener getUrlListener() {
-        return null;
-        //have to implement
+        return new ArchitectView.ArchitectUrlListener() {
+            @Override
+            public boolean urlWasInvoked(String uriString) {
+                Uri invokedUri = Uri.parse(uriString);
+
+                if ("markerselected".equalsIgnoreCase(invokedUri.getHost())) {
+                    final Intent poiDetailIntent = new Intent(CameraActivity.this, JsToNativeData.class);
+                    poiDetailIntent.putExtra(JsToNativeData.EXTRAS_KEY_POI_ID, String.valueOf(invokedUri.getQueryParameter("id")) );
+                    poiDetailIntent.putExtra(JsToNativeData.EXTRAS_KEY_POI_TITILE, String.valueOf(invokedUri.getQueryParameter("title")) );
+                    poiDetailIntent.putExtra(JsToNativeData.EXTRAS_KEY_POI_DESCR, String.valueOf(invokedUri.getQueryParameter("description")) );
+                    poiDetailIntent.putExtra(JsToNativeData.EXTRAS_KEY_POI_LATITUDE, String.valueOf(invokedUri.getQueryParameter("lat")) );
+                    poiDetailIntent.putExtra(JsToNativeData.EXTRAS_KEY_POI_LONGITUDE, String.valueOf(invokedUri.getQueryParameter("lon")) );
+                    CameraActivity.this.startActivity(poiDetailIntent);
+                    return true;
+                }
+                return true;
+            }
+        };
+
     }
 
     @Override

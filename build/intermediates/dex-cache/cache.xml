@@ -2,179 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-ddc14746437986cbf7deee959230599518968cf7.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
+        jar="D:\The Research Backup\Navio - very first structure\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-8c72c77278e4f865abb8c68223aa7e7c4a24e95e.jar" />
+        <dex dex="D:\The Research Backup\Navio - very first structure\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-195428bef65bca2b3fd2ce40855ee58b390f567b.jar" />
     </item>
     <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.3.0\classes.jar"
+        jar="D:\The Research Backup\Navio - very first structure\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-475ad7c7fff09b38597c87a678e246b62b0a5549.jar" />
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="D:\The Research Backup\Navio - very first structure\app\build\intermediates\pre-dexed\debug\classes-dc4d598da3aa8a65975e87c9c27cbfbd06897e88.jar" />
     </item>
     <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.3.0\classes.jar"
+        jar="D:\The Research Backup\Navio - very first structure\app\libs\wikitudesdk.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="a0ce76dfaccbfbd6c551ed2174280aaabe60fe47">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-07fa38858033a8703a4cb061c5ffef307aa030f7.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3988694bf9d8186ff97ad5cdfa4ed88b5010fe08">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-400efd67ff03258cebe96401d43760f91f916988.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9c9dea9e85aceb09d95df5e6f7bc8a43fc286068">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-e82b90f8e15d75b85709132c94ef5d26c94e67ef.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4f4fe3c23776540625f3c2844152a7510fddf9f1">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-d652682a69f5561f4696d90b3fe42e455c508e19.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e5b9f5b0aa8dee788beb63d23832cb29ce771343">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-7b4a4670c97538c2d9e152586ec159a2fc618a21.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b2c07cdb814fe988ad05f7b4d767a841514a5991">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-1a6db3b197f893e2d96865d33445a44a6d002d3a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-e445dc73a44c949d6bc57108ece010acb85a56eb.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="bb36004beb02b69562cbec9aa7d6a3cf16bf5d1b">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-e054f43121a48816ac50a5460371f56650fdcf7d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3b4ff5c39dace8f3b4ab4cab8191785547a0815f">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-07e5299d97251e8653e2d63778a3bdfd92d4ea86.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-8e12fdcbbebe0a2189171eb8db130f8de85dcad1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="5ea948d825957be6c4358c48422bee60eef2d487">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-3e4468ea2e935b3e0ab9b4e1376fbc4b8b7e33f1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="565a01f90f1529f73362707c4c185d0623a68782">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-fe7f8f867d2fb34a878a2f499607b7f690cf68fe.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="59652857a825fff0de62166fca1bc9553cc01abb">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-feaa24e2ed82c6db239e5fabcdc633e9291bafc4.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-6f897e458e1ea2cc3e9dba7dd572fb7fb00a9db5.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="0180d031a7b54dabb93b4af3869468b55dc938bd">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-c165c70b4228f378e902bc93cc8397e6d8963bb7.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7215ac1f2fca947b9415a6ee2a1bf991364aab24">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-25f1a39098fdf89344b4228cb83c848e51e62a9a.jar" />
+        sha1="7c5e5c9b24600f61ff5348ab0a7310e5d84138c7">
+        <dex dex="D:\The Research Backup\Navio - very first structure\app\build\intermediates\pre-dexed\debug\wikitudesdk-8b0b72cecb01566b757af9052431f442285639bd.jar" />
     </item>
     <item
         jar="C:\Users\Tharaka\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-afa46fa3a8fe56b6dd8b1c8d09544a08c1f045f2.jar" />
+        <dex dex="D:\The Research Backup\Navio - very first structure\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-afa46fa3a8fe56b6dd8b1c8d09544a08c1f045f2.jar" />
     </item>
     <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.3.0\classes.jar"
+        jar="D:\The Research Backup\Navio - very first structure\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="0708ef60917bf94913fe9ef972a655b99462dca7">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-484345f7bcf57c8b4724683b0de4d7ce2abe9e2f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e35fae1b377c23aa5fd2d309a190c2d0f73d54ec">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-ea5bee426f87849899150ba6369bff2e237a9d51.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\libs\wikitudesdk.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7c5e5c9b24600f61ff5348ab0a7310e5d84138c7">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\wikitudesdk-4b0b5c049975939872a2f591d175db7a1e22a175.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-c07b06a9407538f628d51c363a7e024cec197cde.jar" />
-    </item>
-    <item
-        jar="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
-        <dex dex="C:\Users\Tharaka\Documents\GitHub\Navio\app\build\intermediates\pre-dexed\debug\classes-cedbe041d07dfeebfa33c0d56097b0647c69896f.jar" />
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="D:\The Research Backup\Navio - very first structure\app\build\intermediates\pre-dexed\debug\classes-beda6396d5e2ac6cef99ce6afe36e29eb951c1c9.jar" />
     </item>
 
 </items>

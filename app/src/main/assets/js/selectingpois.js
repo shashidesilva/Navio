@@ -13,9 +13,6 @@ var World = {
 	// you may request new data from server periodically, however: in this sample data is only requested once
 	isRequestingData: false,
 
-	markerLat: null,
-	markerLong: null,
-
 	// true once data was fetched
 	initiallyLoadedData: false,
 
@@ -99,6 +96,19 @@ var World = {
 		});
 	},
 
+	onPoiDetailMoreButtonClicked: function onPoiDetailMoreButtonClickedFn() {
+		var currentMarker = World.currentMarker;
+		var architectSdkUrl = "architectsdk://markerselected?id=" + encodeURIComponent(currentMarker.poiData.id) + "&title=" + encodeURIComponent(currentMarker.poiData.title) + "&description=" + encodeURIComponent(currentMarker.poiData.description) + "&lat=" + encodeURIComponent(currentMarker.poiData.latitude) + "&lon=" + encodeURIComponent(currentMarker.poiData.longitude);
+		/*
+			The urlListener of the native project intercepts this call and parses the arguments. 
+			This is the only way to pass information from JavaSCript to your native code. 
+			Ensure to properly encode and decode arguments.
+			Note: you must use 'document.location = "architectsdk://...' to pass information from JavaScript to native. 
+			! This will cause an HTTP error if you didn't register a urlListener in native architectView !
+		*/
+		document.location = architectSdkUrl;
+	},
+
 	// location updates, fired every time you call architectView.setLocation() in native environment
 	locationChanged: function locationChangedFn(lat, lon, alt, acc) {
 
@@ -154,9 +164,6 @@ var World = {
 		// update panel values
 		$("#poi-detail-title").html(marker.poiData.title);
 		$("#poi-detail-description").html(marker.poiData.description);
-
-		World.markerLat = marker.poiData.latitude;
-		World.markerLong = marker.poiData.longitude;
 
 		// distance and altitude are measured in meters by the SDK. You may convert them to miles / feet if required.
 		var distanceToUserValue = (marker.distanceToUser > 999) ? ((marker.distanceToUser / 1000).toFixed(2) + " km") : (Math.round(marker.distanceToUser) + " m");
@@ -238,7 +245,7 @@ var World = {
 					"longitude": (data.results[i].geometry.location.lng),
 					"latitude": (data.results[i].geometry.location.lat),
 					"description": (data.results[i].types[0]),
-					// use this value to ignore altitude information in general - marker will always be on user-level
+					 //use this value to ignore altitude information in general - marker will always be on user-level
 					"altitude": AR.CONST.UNKNOWN_ALTITUDE,
 					"name": (data.results[i].name)
 					});

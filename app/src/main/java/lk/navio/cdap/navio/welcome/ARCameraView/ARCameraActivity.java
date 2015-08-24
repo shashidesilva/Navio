@@ -60,11 +60,11 @@ public abstract class ARCameraActivity extends ActionBarActivity implements Arch
 
         this.sensorAccuracyListener = this.getSensorAccuracyListener();
 
-        //this.urlListener = this.getUrlListener();
+        this.urlListener = this.getUrlListener();
 
-        /*if (this.urlListener != null && this.architectView != null) {
+        if (this.urlListener != null && this.architectView != null) {
             this.architectView.registerUrlListener(this.getUrlListener());
-        }*/
+        }
 
 
         if (hasGeo()) {
