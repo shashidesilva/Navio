@@ -65,7 +65,7 @@
         </activity>
         <activity
             android:name=".ARCameraView.JsToNativeData"
-            android:label="@string/title_activity_js_to_native_data" >
+             >
         </activity>
     </application>
 
